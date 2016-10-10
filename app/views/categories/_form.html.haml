@@ -1,0 +1,15 @@
+= form_for @item do |f|
+  %p
+    = f.label :title
+    %br/
+    = f.text_field :title
+  = f.select :parent_id, options_from_collection_for_select(Category.all, :id, :title, @item.parent_id), :include_blank => true 
+  %p
+    = f.submit
+
+
+- if @item.errors.any?
+  %ul.Signup_Errors
+    - for message_error in @item.errors.full_messages
+      %li
+        * #{message_error}
