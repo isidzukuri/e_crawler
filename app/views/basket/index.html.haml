@@ -1,0 +1,9 @@
+.panel.panel-default
+  .panel-heading Basket
+  .panel-body
+    .list-group
+    = render partial: "products/item", :collection => @items
+    %p.pull-right
+      %b summary:
+      = @summary
+  

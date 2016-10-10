@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :products
 
+  match ':controller(/:action(/:id))', :via => 'get' 
+
   root 'categories#index'
 end
