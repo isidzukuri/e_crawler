@@ -1,3 +1,6 @@
 %p category:
 %h2= @item.title
 %section
+  - if current_user.has_role? :admin
+    = link_to "[Edit]", edit_category_path
+    = link_to "[Destroy]", category_path(@item), method: :delete

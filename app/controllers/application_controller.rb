@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
+  load_and_authorize_resource
 
   def initialize
     post_initialize
@@ -8,11 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
   def post_initialize
-  end
-  
-  def permited_params
-    parameter_name = @model.name.downcase.to_sym
-    params.require(parameter_name).permit(@permited_fields)
   end
 end
