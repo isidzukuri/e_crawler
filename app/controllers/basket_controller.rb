@@ -1,19 +1,20 @@
 class BasketController < ApplicationController
 
   def index
-    # push 1
-    # push 2
-
     @items = Product.find(products.to_a)
     @summary = @items.map {|s| s[:price]}.reduce(0, :+)
   end
 
   def add
-    push params[:id]
+    items = products
+    items << params[:id].to_i
+    session[:products] = items
+    render json: true
   end
 
   def remove
-    products.delete(params[:id])
+    products.delete(params[:id].to_i)
+    render json: true
   end
 
   private
@@ -21,11 +22,4 @@ class BasketController < ApplicationController
   def products
     session[:products] || Set.new
   end
-
-  def push id
-    items = products
-    items << id.to_i
-    session[:products] = items
-  end
-
 end
