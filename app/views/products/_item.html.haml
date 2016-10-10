@@ -1,1 +1,4 @@
-= link_to item.title, product_path(item), :class=> 'list-group-item'
+%a.list-group-item{href: product_path(item)}
+  =item.title
+  %span.pull-right= item.price
+
