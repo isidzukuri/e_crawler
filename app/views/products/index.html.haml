@@ -2,7 +2,7 @@
   .panel-heading products
   .panel-body
     - if admin?
-      = link_to "Create", new_product_path, :class => 'btn btn-primary'
+      = link_to "Create", new_product_path, class: 'btn btn-primary'
   .list-group
-  = render partial: "products/item", :collection => @items
+  = render partial: "products/item", collection: @items
   

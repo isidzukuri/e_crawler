@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  load_and_authorize_resource except: [:create]
   before_action :find_item, only: [:show, :edit]
 
   def index
