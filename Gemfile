@@ -49,3 +49,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '4.2.0'
 gem 'cancancan', '1.15.0'
 gem 'rolify', '5.1.0'
+gem 'haml', '4.0.7'
