@@ -1,5 +1,5 @@
-class CategoriesController < ApplicationController
-  before_action :find_item, only: [:show, :edit, :update, :destroy]
+class ProductsController < ApplicationController
+  before_action :find_item, only: [:show, :edit]
 
   def index
     @items = Product.all
@@ -20,6 +20,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    @item = Product.find(params[:id])
     if @item.update(permited_params)
       redirect_to @item
     else
@@ -28,6 +29,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    @item = Product.find(params[:id])
     @item.destroy
     redirect_to root_path
   end
@@ -35,7 +37,7 @@ class CategoriesController < ApplicationController
   private
 
   def find_item
-    @item = Product.find(params[:id])
+    @item = Product.eager_load(:category).find(params[:id])
   end
 
   def permited_params

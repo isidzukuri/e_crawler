@@ -1,0 +1,5 @@
+- if item.errors.any?
+  %ul
+    - for message_error in @item.errors.full_messages
+      %li.alert.alert-danger
+        #{message_error}

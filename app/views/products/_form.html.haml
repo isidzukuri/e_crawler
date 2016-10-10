@@ -1,0 +1,33 @@
+.panel-body
+  = form_for @item do |f|
+    .input-group
+      = f.label :title
+      %br/
+      = f.text_field :title, :class => 'form-control'
+    %br/
+    .input-group
+      = f.label :price
+      %br/
+      = f.text_field :price, :class => 'form-control'
+    %br/
+    .input-group
+      = f.label :description
+      %br/
+      = f.text_area :description, :class => 'form-control'
+    %br/
+    .input-group
+      = f.label :category
+      %br/
+      = f.select :category_id, categories_options(@item.category_id), {include_blank: true}, {class: "form-control"}
+    %br/
+    .input-group
+      = f.submit class: 'btn btn-primary'
+
+= render "layouts/shared/validation_errors", item: @item
+
+
+
+
+
+
+

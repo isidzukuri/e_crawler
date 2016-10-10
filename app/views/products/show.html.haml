@@ -1,0 +1,18 @@
+.panel.panel-default
+  .panel-heading= @item.title
+  .panel-body
+    - if admin?
+      = link_to "Edit", edit_product_path, :class => 'btn btn-primary'
+      = link_to "Destroy", product_path(@item), method: :delete, :class => 'btn btn-danger'
+    %button.btn.btn-success{"data-id" => @item.id} Add to basket
+
+    %section
+      %p 
+        %b price:
+        #{@item.price}
+      %p 
+        %b description:
+        #{@item.description}
+      %p 
+        %b category:
+        = render "categories/item", item: @item.category
