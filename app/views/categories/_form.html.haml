@@ -8,10 +8,10 @@
     .input-group
       = f.label :parent
       %br/
-      = f.select :parent_id, options_from_collection_for_select(Category.all, :id, :title, @item.parent_id), {:include_blank => true}, {:class => "form-control"}
+      = f.select :parent_id, options_from_collection_for_select(Category.all, :id, :title, @item.parent_id), {class: true}, {class: "form-control"}
     %br/
     .input-group
-      = f.submit :class => 'btn btn-primary'
+      = f.submit class: 'btn btn-primary'
 
 - if @item.errors.any?
   %ul
