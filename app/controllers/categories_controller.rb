@@ -2,15 +2,16 @@ class CategoriesController < ApplicationController
   before_action :find_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @items = @model.all
+    @items = Category.all
   end
 
   def new
-    @item = @model.new
+    @item = Category.new
   end
 
   def create
-    @item = @model.new(permited_params)
+    authorize! :create, Category
+    @item = Category.new(permited_params)
     if @item.save
       redirect_to @item
     else
@@ -28,22 +29,17 @@ class CategoriesController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to '/'
+    redirect_to root_path
   end
 
   private
 
-  def post_initialize
-    @model = Category
-    @permited_fields = :title
-  end
-
   def find_item
-    @item = @model.find(params[:id])
+    @item = Category.find(params[:id])
   end
 
   def permited_params
-    parameter_name = @model.name.downcase.to_sym
-    params.require(parameter_name).permit(@permited_fields)
+    params.require(:category).permit(:title)
   end
+  
 end
