@@ -1,6 +1,7 @@
 %h1 categories
 %section
-  = link_to "[Create]", new_category_path
+  - if current_user.has_role? :admin
+    = link_to "[Create]", new_category_path
 %section
   %p list:
   = render partial: "categories/item", :collection => @items

@@ -1,0 +1,14 @@
+= form_for @item do |f|
+  %p
+    = f.label :title
+    %br/
+    = f.text_field :title
+  %p
+    = f.submit
+
+
+- if @item.errors.any?
+  %ul.Signup_Errors
+    - for message_error in @item.errors.full_messages
+      %li
+        * #{message_error}
