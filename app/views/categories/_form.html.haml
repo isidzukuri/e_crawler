@@ -1,15 +1,27 @@
-= form_for @item do |f|
-  %p
-    = f.label :title
+.panel-body
+  = form_for @item do |f|
+    .input-group
+      = f.label :title
+      %br/
+      = f.text_field :title, :class => 'form-control'
     %br/
-    = f.text_field :title
-  = f.select :parent_id, options_from_collection_for_select(Category.all, :id, :title, @item.parent_id), :include_blank => true 
-  %p
-    = f.submit
-
+    .input-group
+      = f.label :parent
+      %br/
+      = f.select :parent_id, options_from_collection_for_select(Category.all, :id, :title, @item.parent_id), {:include_blank => true}, {:class => "form-control"}
+    %br/
+    .input-group
+      = f.submit class: 'btn btn-primary'
 
 - if @item.errors.any?
-  %ul.Signup_Errors
+  %ul
     - for message_error in @item.errors.full_messages
-      %li
-        * #{message_error}
+      %li.alert.alert-danger
+        #{message_error}
+
+
+
+
+
+
+
