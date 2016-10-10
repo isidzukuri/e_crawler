@@ -1,8 +1,7 @@
 class BasketController < ApplicationController
-
   def index
     @items = Product.find(products.to_a)
-    @summary = @items.map {|s| s[:price]}.reduce(0, :+)
+    @summary = @items.map { |s| s[:price] }.reduce(0, :+)
   end
 
   def add
