@@ -7,4 +7,5 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render partial: "layouts/shared/header"
-    = yield
+    .container.main_content
+      = yield
