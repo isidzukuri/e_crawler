@@ -1,6 +1,6 @@
-%p category:
-%h2= @item.title
-%section
-  - if current_user && current_user.has_role?(:admin)
-    = link_to "[Edit]", edit_category_path
-    = link_to "[Destroy]", category_path(@item), method: :delete
+.panel.panel-default
+  .panel-heading= @item.title
+  .panel-body
+    - if admin?
+      = link_to "Edit", edit_category_path, :class => 'btn btn-primary'
+      = link_to "Destroy", category_path(@item), method: :delete, :class => 'btn btn-danger'

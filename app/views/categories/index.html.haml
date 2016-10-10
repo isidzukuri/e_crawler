@@ -1,7 +1,8 @@
-%h1 categories
-%section
-  - if current_user.has_role? :admin
-    = link_to "[Create]", new_category_path
-%section
-  %p list:
+.panel.panel-default
+  .panel-heading categories
+  .panel-body
+    - if admin?
+      = link_to "Create", new_category_path, :class => 'btn btn-primary'
+  .list-group
   = render partial: "categories/item", :collection => @items
+  

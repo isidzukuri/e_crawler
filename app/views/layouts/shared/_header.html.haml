@@ -1,8 +1,16 @@
-%ul
-  %li= link_to "Categories", categories_path
-  - if signed_in?
-    %li= link_to current_user.email, edit_user_registration_path
-    %li= link_to "Logout", destroy_user_session_path, method: :delete
-  - else
-    %li= link_to "Register", new_user_registration_path
-    %li= link_to "Login", new_user_session_path
+.navbar.navbar-default.top_menu
+  .container
+    %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    .navbar-collapse.collapse.navbar-responsive-collapse
+      %ul.nav.navbar-nav
+        %li= link_to "Categories", categories_path 
+      %ul.nav.navbar-nav.navbar-right
+        - if signed_in?
+          %li= link_to current_user.email, edit_user_registration_path
+          %li= link_to "Logout", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to "Register", new_user_registration_path
+          %li= link_to "Login", new_user_session_path
