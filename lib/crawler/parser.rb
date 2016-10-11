@@ -1,16 +1,16 @@
 module Crawler
   class Parser
-    # '.product a:not(.button)'
-    # '.paging-box a'
 
     def initialize(settings = {})
       @settings = {
-        threads_number: 1,
+        threads_number: 20,
         use_cache: true
       }
       @settings.merge!(settings)
       @data = []
     end
+
+    private
 
     def parse(url, item_attr, paginator_attr = nil)
       sitemap = Sitemap.new(url, item_attr, paginator_attr, @settings)
@@ -19,8 +19,6 @@ module Crawler
       run_threads
       @data
     end
-
-    private
 
     def run_threads
       threads = []
@@ -35,24 +33,18 @@ module Crawler
     end
 
     def process(next_url, browser)
-      # begin
       parse_item(next_url, browser)
-      # rescue
-      # end
       @queue.next
     end
 
     def parse_item(url, browser)
-    	ap url
       page = browser.load_page(url)
       data = extract_data(page)
-      ap "--#{url}"
       @data << data if data
     end
 
     def extract_data(_page)
-      # raise NoMethodError.new("Implement :extract_data method")
-      # raise Crawler::Exception, 'Implement :extract_data method'
+      raise NoMethodError.new("Implement :extract_data method")
     end
   end
 end

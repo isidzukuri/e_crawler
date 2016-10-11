@@ -33,6 +33,11 @@ class CategoriesController < ApplicationController
     redirect_to root_path
   end
 
+  def copy_category
+    crawler = LaLv.new
+    items = crawler.copy_items params[:url]
+  end
+
   private
 
   def find_item
