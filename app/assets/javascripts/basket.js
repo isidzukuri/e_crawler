@@ -1,6 +1,7 @@
 ;
 $(function() {
   $(document).on("click", ".basket_remove", function() {
+    if(!confirm('Are you sure?')) return false;
     var button = $(this);
     var id = button.data('id');
     $.get("basket/remove/"+id, function() {
