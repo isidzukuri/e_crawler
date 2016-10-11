@@ -3,7 +3,7 @@
   .panel-body
     - if admin?
       = link_to "Edit", edit_category_path, class: 'btn btn-primary'
-      = link_to "Destroy", category_path(@item), method: :delete, class: 'btn btn-danger'
+      = link_to "Destroy", category_path(@item), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }
     %br/
     %b ptoducts:
     = render partial: "products/item", collection: @item.products

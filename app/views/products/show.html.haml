@@ -3,7 +3,7 @@
   .panel-body
     - if admin?
       = link_to "Edit", edit_product_path, class: 'btn btn-primary'
-      = link_to "Destroy", product_path(@item), method: :delete, class: 'btn btn-danger'
+      = link_to "Destroy", product_path(@item), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }
     %button.btn.btn-success{"data-id" => @item.id} Add to basket
 
     %section
@@ -13,6 +13,7 @@
       %p 
         %b description:
         #{@item.description}
-      %p 
-        %b category:
-        = render "categories/item", item: @item.category
+      - if @item.category
+        %p 
+          %b category:
+          = render "categories/item", item: @item.category

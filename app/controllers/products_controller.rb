@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     if @item.save
       redirect_to @item
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -25,13 +25,13 @@ class ProductsController < ApplicationController
     if @item.update(permited_params)
       redirect_to @item
     else
-      render 'edit'
+      render :edit
     end
   end
 
   def destroy
     @item = Product.find(params[:id])
-    @item.destroy
+    @item.destroy if @item
     redirect_to root_path
   end
 
