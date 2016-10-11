@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
     if @item.save
       redirect_to @item
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -24,12 +24,12 @@ class CategoriesController < ApplicationController
     if @item.update(permited_params)
       redirect_to @item
     else
-      render 'edit'
+      render :edit
     end
   end
 
   def destroy
-    @item.destroy
+    @item.destroy if @item
     redirect_to root_path
   end
 
