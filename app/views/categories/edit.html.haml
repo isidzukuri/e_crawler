@@ -1,3 +1,15 @@
 .panel.panel-default
   .panel-heading= "edit: #{@item.title}"
   = render "form"
+
+.panel.panel-default
+  .panel-heading= "Copy items from another shop"
+  .panel-body
+    .input-group
+      %label url
+      %br/
+      = text_field_tag :url, nil, class: 'form-control'
+      = hidden_field_tag :category_id, @item.id
+    %br/
+    .input-group
+      %button.btn.btn-primary.copy_category copy

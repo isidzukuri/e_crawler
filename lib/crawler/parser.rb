@@ -1,6 +1,5 @@
 module Crawler
   class Parser
-
     def initialize(settings = {})
       @settings = {
         threads_number: 20,
@@ -44,7 +43,7 @@ module Crawler
     end
 
     def extract_data(_page)
-      raise NoMethodError.new("Implement :extract_data method")
+      raise NoMethodError, 'Implement :extract_data method'
     end
   end
 end

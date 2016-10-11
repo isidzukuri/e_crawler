@@ -10,8 +10,8 @@
         %b price:
         #{@item.price}
       %p 
-        %b description:
-        #{@item.description}
+        %b description: 
+        = raw @item.description
       - if @item.category
         %p 
           %b category:
