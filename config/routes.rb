@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :products
+  resources :basket
 
   match ':controller(/:action(/:id))', :via => 'get' 
 

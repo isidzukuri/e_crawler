@@ -5,7 +5,7 @@ class BasketController < ApplicationController
 
   end
 
-  def add
+  def update
     items = products
     items << params[:id].to_i
     session[:products] = items

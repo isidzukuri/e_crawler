@@ -12,7 +12,7 @@ $(function() {
 
   $(document).on("click", ".basket_add", function() {
     var id = $(this).data('id');
-    $.get("/basket/add/"+id);
+    $.get("/basket/update/"+id);
     return false;
   });
 });
