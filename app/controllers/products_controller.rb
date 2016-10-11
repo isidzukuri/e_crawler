@@ -1,18 +1,18 @@
-class CategoriesController < ApplicationController
+class ProductsController < ApplicationController
   load_and_authorize_resource except: [:create]
-  before_action :find_item, only: [:show, :edit, :update, :destroy]
+  before_action :find_item, only: [:show, :edit]
 
   def index
-    @items = Category.all
+    @items = Product.all
   end
 
   def new
-    @item = Category.new
+    @item = Product.new
   end
 
   def create
-    authorize! :create, Category
-    @item = Category.new(permited_params)
+    authorize! :create, Product
+    @item = Product.new(permited_params)
     if @item.save
       redirect_to @item
     else
@@ -21,6 +21,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    @item = Product.find(params[:id])
     if @item.update(permited_params)
       redirect_to @item
     else
@@ -29,6 +30,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    @item = Product.find(params[:id])
     @item.destroy if @item
     redirect_to root_path
   end
@@ -36,10 +38,10 @@ class CategoriesController < ApplicationController
   private
 
   def find_item
-    @item = Category.find(params[:id])
+    @item = Product.eager_load(:category).find(params[:id])
   end
 
   def permited_params
-    params.require(:category).permit(:title, :parent_id)
+    params.require(:product).permit(:title, :description, :price, :category_id)
   end
 end
