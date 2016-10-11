@@ -1,27 +1,26 @@
 module Crawler
-	class Queue
-		attr_reader :items_shifted, :total, :items_left
-		
-		def initialize items
-	    @store = items
-	    @total = items.count
-	    @items_left = items.count
-	    @items_shifted = 0
-		end
+  class Queue
+    attr_reader :items_shifted, :total, :items_left
 
-		def next
-			thread_lock.synchronize do
-				@items_left -= 1
-				@items_shifted += 1
-				@store.shift
-			end
-		end
+    def initialize(items)
+      @store = items
+      @total = items.count
+      @items_left = items.count
+      @items_shifted = 0
+    end
 
-		private
+    def next
+      thread_lock.synchronize do
+        @items_left -= 1
+        @items_shifted += 1
+        @store.shift
+      end
+    end
 
-		def thread_lock
-			@lock = @lock.nil? ? Mutex.new : @lock
-		end
+    private
 
-	end
+    def thread_lock
+      @lock = @lock.nil? ? Mutex.new : @lock
+    end
+  end
 end

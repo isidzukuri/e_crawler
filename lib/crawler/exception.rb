@@ -1,4 +1,4 @@
 module Crawler
-	class Exception < Exception
-	end
+  class Exception < RuntimeError
+  end
 end
