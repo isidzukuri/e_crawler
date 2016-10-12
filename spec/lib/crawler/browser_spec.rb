@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Crawler::Browser do
   before :each do
@@ -8,13 +8,11 @@ RSpec.describe Crawler::Browser do
 
   describe '#load_page' do
     it 'throw exception if url not valid' do
-      expect{ @instance.load_page('dummy string') }.to raise_error(ArgumentError)
+      expect { @instance.load_page('dummy string') }.to raise_error(ArgumentError)
     end
 
     it "should load web page return mechanize page's object " do
       expect(@instance.load_page(@url)).to be_a(Mechanize::Page)
     end
   end
-
 end
-

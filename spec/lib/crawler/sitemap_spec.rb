@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Crawler::Sitemap do
   before :each do
@@ -12,9 +12,7 @@ RSpec.describe Crawler::Sitemap do
     end
 
     it 'shoud return array of urls' do
-      expect(@instance.items_urls.first =~ URI::regexp).to eq 0
+      expect(@instance.items_urls.first =~ URI.regexp).to eq 0
     end
   end
-
 end
-
