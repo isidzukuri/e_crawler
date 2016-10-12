@@ -34,10 +34,7 @@ class CategoriesController < ApplicationController
   end
 
   def copy_category
-    crawler = LaLv.new
-    items = crawler.copy_items params[:url]
-    category_id = params[:id].to_i
-    Product.create_many items, category_id
+    CategoryCopier.copy(:la_lv, params[:url], params[:id])
     render json: true
   end
 

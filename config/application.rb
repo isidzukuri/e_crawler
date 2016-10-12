@@ -13,5 +13,6 @@ module ECrawler
     # -- all .rb files in that directory are automatically loaded.
     # config = Rails.application.config
     config.autoload_paths += Dir["#{Rails.root}/lib/**/"]
+    config.autoload_paths += Dir["#{Rails.root}/app/repos/**/"]
   end
 end

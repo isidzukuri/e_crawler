@@ -1,5 +1,10 @@
 class LaLv < Crawler::Parser
-  def copy_items(url)
+  
+  def self.copy(url)
+    new.copy(url)
+  end
+
+  def copy(url)
     parse url, '.product a:not(.button)', '.paging-box a'
   end
 

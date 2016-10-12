@@ -14,13 +14,4 @@ class Product < ApplicationRecord
   def thumb
     photos.first if photos.present?
   end
-
-  def self.create_many(items, category_id)
-    Product.bulk_insert(set_size: 100) do |worker|
-      items.each do |attrs|
-        attrs[:category_id] = category_id
-        worker.add(attrs)
-      end
-    end
-  end
 end
