@@ -19,8 +19,10 @@ module Crawler
 
     private
 
+    attr_accessor :lock
+
     def thread_lock
-      @lock = @lock.nil? ? Mutex.new : @lock
+      lock = lock.nil? ? Mutex.new : lock
     end
   end
 end

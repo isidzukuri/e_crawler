@@ -15,6 +15,8 @@ module Crawler
 
     private
 
+    attr_accessor :browser
+
     def extract_host
       uri = URI.parse(@url)
       @scheme = uri.scheme
@@ -39,7 +41,7 @@ module Crawler
     end
 
     def items_on_page(url)
-      page = @browser.load_page(url)
+      page = browser.load_page(url)
       links_by_attr(page, @item_attr)
     end
 
@@ -52,7 +54,7 @@ module Crawler
 
     def pages_from_paginator(url)
       pages
-      page = @browser.load_page(url)
+      page = browser.load_page(url)
       current_page_links = links_by_attr(page, @paginator_attr)
       pages_push(url)
       current_page_links.each do |link|

@@ -7,25 +7,27 @@ module Crawler
 
     def load_page(url)
       check_url(url)
-      if @use_cache
+      if use_cache
         page_from_cache(url) || cache_page(url)
       else
-        @agent.get(url)
+        agent.get(url)
       end
     end
 
     private
 
+    attr_accessor :use_cache, :agent
+
     def page_from_cache(url)
       content = nil
       if page = CACHE.read(url)
-        content = Mechanize::Page.new(URI(url), { 'content-type' => 'text/html' }, page, nil, @agent)
+        content = Mechanize::Page.new(URI(url), { 'content-type' => 'text/html' }, page, nil, agent)
       end
       content
     end
 
     def cache_page(url)
-      page = @agent.get(url)
+      page = agent.get(url)
       CACHE.write(url, page.body)
       page
     end

@@ -11,12 +11,14 @@ module Crawler
 
     private
 
+    attr_accessor :data
+
     def parse(url, item_attr, paginator_attr = nil)
       sitemap = Sitemap.new(url, item_attr, paginator_attr, @settings)
       urls_list = sitemap.items_urls
       @queue = Crawler::Queue.new(urls_list)
       run_threads
-      @data
+      data
     end
 
     def run_threads
@@ -38,8 +40,8 @@ module Crawler
 
     def parse_item(url, browser)
       page = browser.load_page(url)
-      data = extract_data(page)
-      @data << data if data
+      item_hash = extract_data(page)
+      data << item_hash if item_hash
     end
 
     def extract_data(_page)
