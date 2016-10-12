@@ -51,15 +51,24 @@ module Crawler
     end
 
     def pages_from_paginator(url)
-      @items_pages ||= Set.new
+      pages
       page = @browser.load_page(url)
       current_page_links = links_by_attr(page, @paginator_attr)
-      @items_pages << url
+      pages_push(url)
       current_page_links.each do |link|
         next if @items_pages.include?(link)
         pages_from_paginator(link)
       end
       @items_pages
     end
+
+    def pages
+      @items_pages ||= Set.new
+    end
+
+    def pages_push url
+      @items_pages << url
+    end
+
   end
 end
