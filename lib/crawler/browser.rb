@@ -6,6 +6,7 @@ module Crawler
     end
 
     def load_page(url)
+      check_url(url)
       if @use_cache
         page_from_cache(url) || cache_page(url)
       else
@@ -27,6 +28,10 @@ module Crawler
       page = @agent.get(url)
       CACHE.write(url, page.body)
       page
+    end
+
+    def check_url url
+      raise ArgumentError, 'Not valid url' unless url =~ URI::regexp
     end
   end
 end
