@@ -12,6 +12,9 @@
       %p 
         %b description: 
         = raw @item.description
+      - if @item.photos
+        - @item.photos.each do |photo|
+          = image_tag(photo)
       - if @item.category
         %p 
           %b category:

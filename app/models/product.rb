@@ -7,7 +7,17 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }
   validates :description, length: { in: 0..2000 }
 
-  def self.create_many items, category_id
+
+  def photos
+    JSON.parse(images) if images.present?
+  end
+
+  def thumb
+    photos.first if photos.present?
+  end
+
+
+  def self.create_many(items, category_id)
     Product.bulk_insert(set_size: 100) do |worker|
       items.each do |attrs|
         attrs[:category_id] = category_id

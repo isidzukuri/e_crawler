@@ -2,7 +2,7 @@ module Crawler
   class Parser
     def initialize(settings = {})
       @settings = {
-        threads_number: 20,
+        threads_number: 25,
         use_cache: true
       }
       @settings.merge!(settings)
