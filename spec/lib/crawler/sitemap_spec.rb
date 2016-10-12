@@ -10,6 +10,10 @@ RSpec.describe Crawler::Sitemap do
     it 'serchs links in dom of given page by selector' do
       expect(@instance.items_urls).to be_a(Array)
     end
+
+    it 'shoud return array of urls' do
+      expect(@instance.items_urls.first =~ URI::regexp).to eq 0
+    end
   end
 
 end
