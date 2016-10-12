@@ -1,0 +1,13 @@
+.panel.panel-default
+  .panel-heading Basket
+  .panel-body
+    .list-group
+    - @items.each do |item|
+      .list-group-item
+        = link_to item.title, product_path(item)
+        %button.btn.btn-xs.btn-warning.basket_remove{'data-id': item.id} remove
+        %span.pull-right= item.price
+    %p.pull-right
+      %b summary:
+      = @summary
+  
