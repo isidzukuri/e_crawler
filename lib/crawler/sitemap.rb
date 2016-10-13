@@ -15,7 +15,8 @@ module Crawler
 
     private
 
-    attr_accessor :browser, :scheme, :host, :paginator_attr, :item_attr, :base_url
+    attr_accessor :browser
+    attr_reader :scheme, :host, :paginator_attr, :item_attr, :base_url
 
     def extract_host
       uri = URI.parse(base_url)
