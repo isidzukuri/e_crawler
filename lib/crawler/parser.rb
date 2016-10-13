@@ -42,6 +42,7 @@ module Crawler
       page = browser.load_page(url)
       item_hash = extract_data(page)
       data << item_hash if item_hash
+    rescue
     end
 
     def extract_data(_page)

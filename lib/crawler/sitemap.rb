@@ -67,6 +67,5 @@ module Crawler
     def pages
       @items_pages ||= Set.new
     end
-
   end
 end

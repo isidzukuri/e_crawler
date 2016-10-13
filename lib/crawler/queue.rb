@@ -1,6 +1,5 @@
 module Crawler
   class Queue
-
     def initialize(items)
       @store = items
       @total = items.count
