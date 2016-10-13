@@ -7,19 +7,27 @@ RSpec.describe Crawler::Parser do
 
   describe '#parse' do
     it "scrape data from a website's category" do
-      expect(@instance.copy_items).to be_a(Array)
+      VCR.use_cassette('items') do
+        expect(@instance.copy_items).to be_a(Array)
+      end
     end
 
     it 'should return array of hashes' do
-      expect(@instance.copy_items.first).to be_a(Hash)
+      VCR.use_cassette('items') do
+        expect(@instance.copy_items.first).to be_a(Hash)
+      end
     end
 
     it "scrape data from a website's category, from all category's pages" do
-      expect(@instance.copy_items_with_paginator).to be_a(Array)
+      VCR.use_cassette('items') do
+        expect(@instance.copy_items_with_paginator).to be_a(Array)
+      end
     end
 
     it "scrape data from a website's category, from all category's pages" do
-      expect(@instance.copy_items_with_paginator).not_to be_empty
+      VCR.use_cassette('items') do
+        expect(@instance.copy_items_with_paginator).not_to be_empty
+      end
     end
 
     it 'should find 40 items' do
