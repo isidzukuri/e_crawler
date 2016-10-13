@@ -37,9 +37,10 @@ RSpec.describe ItemsCreator do
     end
 
     it 'shold insert items in 2 transactions' do
+      before_count = Product.count
       items = Array.new(103, @item)
       ItemsCreator.bulk_create(:product, items, category_id: @category.id)
-      expect(Product.last.category_id).to eq @category.id
+      expect(Product.count - before_count).to eq 103
     end
   end
 end
