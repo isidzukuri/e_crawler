@@ -20,6 +20,10 @@ RSpec.describe LaLv do
     it "scrape data from a website's category" do
       expect(@parsed_items).to be_a(Array)
     end
+    
+    it 'should find 40 items' do
+      expect(@parsed_items.length).to eq 40
+    end
 
     it "scrape data from a website's category" do
       expect(@parsed_items.first.keys).to eq @item_keys
