@@ -1,7 +1,7 @@
 module Crawler
   class Sitemap
     def initialize(url, item_attr, paginator_attr = nil, use_cache = true)
-      @url = url
+      @base_url = url
       @item_attr = item_attr
       @paginator_attr = paginator_attr
       @use_cache = use_cache
@@ -15,10 +15,10 @@ module Crawler
 
     private
 
-    attr_accessor :browser
+    attr_accessor :browser, :scheme, :host, :paginator_attr, :item_attr, :base_url
 
     def extract_host
-      uri = URI.parse(@url)
+      uri = URI.parse(base_url)
       @scheme = uri.scheme
       @host = uri.host.downcase
     end
@@ -33,32 +33,31 @@ module Crawler
     end
 
     def paginator_links
-      if @paginator_attr
-        pages_from_paginator(@url)
+      if paginator_attr
+        pages_from_paginator(base_url)
       else
-        [@url]
+        [base_url]
       end
     end
 
     def items_on_page(url)
       page = browser.load_page(url)
-      links_by_attr(page, @item_attr)
+      links_by_attr(page, item_attr)
     end
 
     def links_by_attr(page, attribute)
       page.search(attribute).map do |element|
         href = element.attribute('href').to_s
-        href.include?(@host) ? href : "#{@scheme}://#{@host}#{href}"
+        href.include?(host) ? href : "#{scheme}://#{host}#{href}"
       end
     end
 
     def pages_from_paginator(url)
-      pages
       page = browser.load_page(url)
-      current_page_links = links_by_attr(page, @paginator_attr)
-      pages_push(url)
+      current_page_links = links_by_attr(page, paginator_attr)
+      pages << url
       current_page_links.each do |link|
-        next if @items_pages.include?(link)
+        next if pages.include?(link)
         pages_from_paginator(link)
       end
       @items_pages
@@ -68,8 +67,5 @@ module Crawler
       @items_pages ||= Set.new
     end
 
-    def pages_push(url)
-      @items_pages << url
-    end
   end
 end
