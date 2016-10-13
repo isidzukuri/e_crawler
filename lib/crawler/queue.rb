@@ -1,6 +1,5 @@
 module Crawler
   class Queue
-    attr_reader :items_shifted, :total, :items_left
 
     def initialize(items)
       @store = items
@@ -22,7 +21,7 @@ module Crawler
     attr_accessor :lock
 
     def thread_lock
-      lock = lock.nil? ? Mutex.new : lock
+      @lock = lock.nil? ? Mutex.new : lock
     end
   end
 end
