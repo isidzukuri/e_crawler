@@ -10,6 +10,6 @@ class CategoryCopier
 
   def copy(url)
     items = @crawler.copy(url)
-    ItemsCreator.bulk_create :product, items, @category_id
+    ItemsCreator.bulk_create :product, items, category_id: @category_id
   end
 end
