@@ -22,6 +22,12 @@ RSpec.describe Crawler::Parser do
       expect(@instance.copy_items_with_paginator).not_to be_empty
     end
 
+    it 'should find 40 items' do
+      instance = SomeCrawler.new use_cache: false
+      VCR.use_cassette('items') do
+        expect(instance.copy_items_with_paginator.length).to eq 40
+      end
+    end
   end
 end
 

@@ -8,22 +8,21 @@ RSpec.describe Crawler::Sitemap do
 
   describe '#items_urls' do
     it 'serchs links in dom of given page by selector' do
-      VCR.use_cassette("sitemap_links") do
+      VCR.use_cassette('sitemap_links') do
         expect(@instance.items_urls).to be_a(Array)
       end
     end
 
     it 'shoud return array of urls' do
-      VCR.use_cassette("sitemap_links") do
-        expect(@instance.items_urls.first =~ URI.regexp).to eq 0
+      VCR.use_cassette('sitemap_links') do
+        expect(@instance.items_urls.first).to be_url
       end
     end
 
     it 'serchs links in dom of given page by selector' do
-      VCR.use_cassette("sitemap_links") do
+      VCR.use_cassette('sitemap_links') do
         expect(@instance.items_urls.length).to eq 40
       end
     end
-
   end
 end

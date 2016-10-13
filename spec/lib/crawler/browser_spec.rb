@@ -12,7 +12,7 @@ RSpec.describe Crawler::Browser do
     end
 
     it "should load web page return mechanize page's object " do
-      VCR.use_cassette("category") do
+      VCR.use_cassette('category') do
         expect(@instance.load_page(@url)).to be_a(Mechanize::Page)
       end
     end
