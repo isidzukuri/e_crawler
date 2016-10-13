@@ -32,8 +32,8 @@ module Crawler
       page
     end
 
-    def check_url url
-      raise ArgumentError, 'Not valid url' unless url =~ URI::regexp
+    def check_url(url)
+      raise ArgumentError, 'Not valid url' unless url =~ URI.regexp
     end
   end
 end

@@ -68,9 +68,8 @@ module Crawler
       @items_pages ||= Set.new
     end
 
-    def pages_push url
+    def pages_push(url)
       @items_pages << url
     end
-
   end
 end

@@ -34,8 +34,13 @@ class CategoriesController < ApplicationController
   end
 
   def copy_category
-    CategoryCopier.copy(:la_lv, params[:url], params[:id])
-    render json: true
+    result = { status: true }
+    begin
+      CategoryCopier.copy(:la_lv, params[:url], params[:id])
+    rescue Exception => e
+      result = { status: false, error: e.message }
+    end
+    render json: result
   end
 
   private
