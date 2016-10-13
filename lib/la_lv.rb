@@ -1,11 +1,19 @@
 class LaLv < Crawler::Parser
+
+  HOST = 'www.1a.lv'
   
   def self.copy(url)
     new.copy(url)
   end
 
   def copy(url)
+    check_url(url)
     parse url, '.product a:not(.button)', '.paging-box a'
+  end
+
+  def check_url(url)
+    raise ArgumentError, 'Not valid url' unless url =~ URI::regexp
+    raise ArgumentError, "Argument should be a url from #{HOST}" unless URI(url).host == HOST
   end
 
   private
