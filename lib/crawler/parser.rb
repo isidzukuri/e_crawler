@@ -11,10 +11,10 @@ module Crawler
 
     private
 
-    attr_accessor :data
+    attr_accessor :data, :settings
 
     def parse(url, item_attr, paginator_attr = nil)
-      sitemap = Sitemap.new(url, item_attr, paginator_attr, @settings)
+      sitemap = Sitemap.new(url, item_attr, paginator_attr, settings)
       urls_list = sitemap.items_urls
       @queue = Crawler::Queue.new(urls_list)
       run_threads
@@ -23,9 +23,9 @@ module Crawler
 
     def run_threads
       threads = []
-      @settings[:threads_number].times do
+      settings[:threads_number].times do
         threads << Thread.new do
-          browser = Browser.new @settings[:use_cache]
+          browser = Browser.new settings[:use_cache]
           next_url = @queue.next
           next_url = process(next_url, browser) while next_url
         end
