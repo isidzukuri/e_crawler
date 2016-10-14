@@ -25,6 +25,12 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
 end
 
+require 'factory_girl'
+RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
+end
+
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -116,3 +122,5 @@ RSpec::Matchers.define :be_url do |_expected|
     end
   end
 end
+
+FactoryGirl.find_definitions
