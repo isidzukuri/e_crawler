@@ -42,6 +42,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'awesome_print'
+  gem 'rspec-rails', '~> 3.5'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -51,3 +52,8 @@ gem 'cancancan', '1.15.0'
 gem 'rolify', '5.1.0'
 gem 'haml', '4.0.7'
 gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'mechanize', '2.1.1'
+gem 'bulk_insert'
+gem 'vcr'
+gem 'webmock'
+gem 'faker'

@@ -33,6 +33,16 @@ class CategoriesController < ApplicationController
     redirect_to root_path
   end
 
+  def copy_category
+    result = { status: true }
+    begin
+      CategoryCopier.copy(:la_lv, params[:url], params[:id])
+    rescue Exception => e
+      result = { status: false, error: e.message }
+    end
+    render json: result
+  end
+
   private
 
   def find_item

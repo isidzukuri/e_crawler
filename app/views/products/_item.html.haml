@@ -1,4 +1,6 @@
 %a.list-group-item{href: product_path(item)}
+  - if item.thumb
+    = image_tag(item.thumb)
   =item.title
   %span.pull-right= item.price
 
