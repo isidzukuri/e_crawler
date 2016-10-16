@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe ItemsCreator do
   before :all do
-    
     @items = Array.new(3, create_item)
     @category = Category.find_or_create_by(title: 'Test')
   end

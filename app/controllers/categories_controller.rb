@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
     authorize! :create, Category
     @item = Category.new(permited_params)
     if @item.save
-      add_flash "Saved successfully"      
+      add_flash 'Saved successfully'
       redirect_to @item
     else
       render :new
@@ -23,7 +23,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @item.update(permited_params)
-      add_flash "Saved successfully"
+      add_flash 'Saved successfully'
       redirect_to @item
     else
       render :edit
@@ -32,11 +32,11 @@ class CategoriesController < ApplicationController
 
   def destroy
     if @item
-      @item.destroy 
-      add_flash "Destroyed successfully"
+      @item.destroy
+      add_flash 'Destroyed successfully'
     else
-      add_flash "Category not found", :error 
-    end  
+      add_flash 'Category not found', :error
+    end
     redirect_to root_path
   end
 
