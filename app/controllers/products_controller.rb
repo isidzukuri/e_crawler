@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
     authorize! :create, Product
     @item = Product.new(permited_params)
     if @item.save
+      flash[:success] = "Saved successfully"
       redirect_to @item
     else
       render :new
@@ -23,6 +24,7 @@ class ProductsController < ApplicationController
   def update
     @item = Product.find(params[:id])
     if @item.update(permited_params)
+      flash[:success] = "Saved successfully"
       redirect_to @item
     else
       render :edit
@@ -31,7 +33,12 @@ class ProductsController < ApplicationController
 
   def destroy
     @item = Product.find(params[:id])
-    @item.destroy if @item
+    if @item
+      @item.destroy 
+      flash[:success] = "Destroyed successfully"
+    else
+      flash[:error] = "Product not found"
+    end  
     redirect_to root_path
   end
 

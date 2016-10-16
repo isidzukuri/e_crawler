@@ -14,6 +14,7 @@ class CategoriesController < ApplicationController
     authorize! :create, Category
     @item = Category.new(permited_params)
     if @item.save
+      flash[:success] = "Saved successfully"      
       redirect_to @item
     else
       render :new
@@ -22,6 +23,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @item.update(permited_params)
+      flash[:success] = "Saved successfully"
       redirect_to @item
     else
       render :edit
@@ -29,18 +31,32 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @item.destroy if @item
+    if @item
+      @item.destroy 
+      flash[:success] = "Destroyed successfully"
+    else
+      flash[:error] = "Category not found"
+    end  
     redirect_to root_path
   end
 
   def copy_category
-    result = { status: true }
-    begin
-      CategoryCopier.copy(:la_lv, params[:url], params[:id])
-    rescue Exception => e
-      result = { status: false, error: e.message }
+    result = CategoryCopier.copy(:la_lv, params[:url], params[:id])
+    if result[:error]
+      flash[:error] = result[:error]
+    else
+      flash[:success] = "Coping of #{params[:url]} completed."
     end
-    render json: result
+
+    # test exceptions
+
+    # result = { status: true }
+    # begin
+    #   CategoryCopier.copy(:la_lv, params[:url], params[:id])
+    # rescue Exception => e
+    #   result = { status: false, error: e.message }
+    # end
+    # render json: result
   end
 
   private
