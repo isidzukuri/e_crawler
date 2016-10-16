@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
   end
 
   def copy_category
-    CopyWorker.perform_async(:la_lv, params[:url], params[:id])
+    CopyWorker.perform_async(:la_lv, params[:url], params[:id], current_user.id)
   end
 
   private
