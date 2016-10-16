@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
 
   def messages_for_user
     return unless signed_in?
-    retrieve_user_messages(current_user.id).each do |message| 
-      add_flash(message['text'], message['type']) 
+    retrieve_user_messages(current_user.id).each do |message|
+      add_flash(message['text'], message['type'])
     end
   end
 

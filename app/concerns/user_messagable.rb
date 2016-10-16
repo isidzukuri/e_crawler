@@ -5,7 +5,7 @@ module UserMessagable
     users_messages_store.sadd(messeges_store_key(user_id), { type: type, text: text }.to_json)
   end
 
-  def retrieve_user_messages user_id
+  def retrieve_user_messages(user_id)
     result = []
     messages = users_messages_store.smembers(messeges_store_key(user_id))
     result = messages.map { |item| JSON.parse(item) } if messages
@@ -15,7 +15,7 @@ module UserMessagable
 
   private
 
-  def messeges_store_key user_id
+  def messeges_store_key(user_id)
     "users_messages_#{user_id}"
   end
 
