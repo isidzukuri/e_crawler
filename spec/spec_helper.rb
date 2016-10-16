@@ -25,7 +25,7 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
 end
 
-require 'factory_girl'
+require 'factory_girl_rails'
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 end
@@ -123,4 +123,4 @@ RSpec::Matchers.define :be_url do |_expected|
   end
 end
 
-FactoryGirl.find_definitions
+# FactoryGirl.find_definitions

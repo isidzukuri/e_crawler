@@ -82,6 +82,9 @@ GEM
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
     faker (1.6.3)
       i18n (~> 0.5)
     ffi (1.9.14)
@@ -245,7 +248,7 @@ DEPENDENCIES
   cancancan (= 1.15.0)
   coffee-rails (~> 4.2)
   devise (= 4.2.0)
-  factory_girl
+  factory_girl_rails
   faker
   haml (= 4.0.7)
   jbuilder (~> 2.5)
