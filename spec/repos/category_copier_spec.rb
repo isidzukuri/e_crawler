@@ -36,7 +36,7 @@ RSpec.describe CategoryCopier do
     end
 
     it 'should raise exception if url not valid' do
-      expect(CategoryCopier.copy(:la_lv, 'not valid url', 1)[:error] ).to eq "Not valid url"
+      expect(CategoryCopier.copy(:la_lv, 'simple str', 1)[:error] ).to eq "Not valid url"
     end
 
     it "should raise exception if crawler's class undefined" do
