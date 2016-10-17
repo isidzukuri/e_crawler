@@ -2,14 +2,9 @@ class OrdersController < ApplicationController
   load_and_authorize_resource except: [:create]
 
   def create
-    if signed_in? 
-      # authorize! :create, Order
+    if signed_in?
       create_item
-      if @order.save
-        successful_creation
-      else
-        redirect_to basket_index_path
-      end
+      @order.save ? successful_creation : failed_creation
     else
       force_login
     end
@@ -22,9 +17,6 @@ class OrdersController < ApplicationController
   def index
     @items = current_user.orders
   end
-
-
-
 
   private
 
@@ -46,6 +38,11 @@ class OrdersController < ApplicationController
     redirect_to @order
   end
 
+  def failed_creation
+    add_flash 'Order not valid', :error
+    redirect_to basket_index_path
+  end
+
   def products
     session[:products]
   end
@@ -53,5 +50,4 @@ class OrdersController < ApplicationController
   def empty_basket
     session[:products] = nil
   end
-
 end

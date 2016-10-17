@@ -1,5 +1,4 @@
 module UserMessagable
-
   def store_message(user_id, text, type = :success)
     users_messages_store.sadd(messeges_store_key(user_id), { type: type, text: text }.to_json)
   end

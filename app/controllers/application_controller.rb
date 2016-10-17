@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :messages_for_user, only: [:index, :show, :new, :edit]
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     session[:previous_url] ? session[:previous_url] : root_path
   end
 

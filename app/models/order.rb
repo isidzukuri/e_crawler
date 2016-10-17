@@ -9,9 +9,11 @@ class Order < ApplicationRecord
   validate :user_present
 
   def subtotal
-    order_items.collect { |oi| oi.total_price }.sum
+    order_items.collect(&:total_price).sum
   end
-private
+
+  private
+
   def set_order_status
     self.order_status_id = 1
   end
@@ -21,8 +23,6 @@ private
   end
 
   def user_present
-    if user.nil?
-      errors.add(:user, "is not a valid user.")
-    end
+    errors.add(:user, 'is not a valid user.') if user.nil?
   end
 end
