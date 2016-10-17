@@ -12,7 +12,7 @@ module OrderDecorator
   end
 
   def status_options(id = nil)
-    id ||= order_status_id 
+    id ||= order_status_id
     options_from_collection_for_select(OrderStatus.all, :id, :name, id)
   end
 end

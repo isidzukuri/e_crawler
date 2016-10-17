@@ -11,14 +11,12 @@ Rails.application.routes.draw do
   resources :basket, only: [:index, :update]
   resources :orders, :except => [:edit, :update,:destroy]
 
-
-
   namespace :admin do
     get '', to: 'orders#index', as: '/'
     resources :orders, :except => [:destroy]
   end
 
   match ':controller(/:action(/:id))', :via => 'get' 
-  
+
   root 'categories#index'
 end

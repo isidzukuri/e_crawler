@@ -50,6 +50,8 @@ group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'faker'
+  gem 'rack_session_access'
+  gem "capybara"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -64,5 +66,5 @@ gem 'bulk_insert'
 gem 'sidekiq', '4.2.2'
 gem 'redis'
 gem 'active_decorator', '0.7.1'
-gem "capybara"
+
 

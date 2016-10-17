@@ -1,5 +1,4 @@
 class Admin::OrdersController < Admin::BaseController
-
   def index
     @items = Order.all
   end

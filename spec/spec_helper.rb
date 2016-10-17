@@ -32,7 +32,11 @@ end
 
 require 'capybara/rspec'
 
+require 'rack_session_access/capybara'
 
+# Rails.application.config do
+#   config.middleware.use RackSessionAccess::Middleware
+# end
 RSpec.configure do |config|
   config.include Capybara::DSL
   # rspec-expectations config goes here. You can use an alternate

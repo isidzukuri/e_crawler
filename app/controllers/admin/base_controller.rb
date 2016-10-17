@@ -5,6 +5,7 @@ class Admin::BaseController < ApplicationController
   layout 'admin/layout'
 
   private
+
   def save_path
     session[:previous_url] = admin_path
   end

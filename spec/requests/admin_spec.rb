@@ -1,17 +1,17 @@
 require 'rails_helper'
 
-RSpec.feature "Admin panel", :type => :feature do
-  let!(:password){'123456'}
-  let!(:email){'user@example.com'}
-  let!(:user){
+RSpec.feature 'Admin panel', type: :feature do
+  let!(:password) { '123456' }
+  let!(:email) { 'user@example.com' }
+  let!(:user) do
     User.create(
       email: email,
       password: password,
       password_confirmation: password
     ).add_role :admin
-  }
+  end
 
-  scenario "User enter admin panel" do
+  scenario 'User enter admin panel' do
     visit admin_path
     expect(current_path).to eq new_user_session_path
 
@@ -21,6 +21,6 @@ RSpec.feature "Admin panel", :type => :feature do
     click_button 'Log in'
 
     expect(current_path).to eq admin_path
-    expect(page).to have_text("Orders")
+    expect(page).to have_text('Orders')
   end
 end
