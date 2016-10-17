@@ -12,12 +12,13 @@ Rails.application.routes.draw do
   resources :orders, :except => [:edit, :update,:destroy]
 
 
-  match ':controller(/:action(/:id))', :via => 'get' 
 
   namespace :admin do
     get '', to: 'orders#index', as: '/'
     resources :orders, :except => [:destroy]
   end
 
+  match ':controller(/:action(/:id))', :via => 'get' 
+  
   root 'categories#index'
 end

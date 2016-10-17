@@ -1,0 +1,37 @@
+.panel.panel-default
+  .panel-heading Order 
+  .panel-body
+    = form_for [:admin, @item] do |f|
+      .input-group
+        %b user:
+        = @item.email
+      %br/
+
+      .input-group
+        = f.label :status
+        = f.select :order_status_id, @item.status_options, {class: "form-control"}
+      %br/
+
+      %b products:
+      .table-responsive
+        %table.table.table-hover
+          %thead
+            %tr
+              %th Item
+              %th Price
+              %th Quantity
+              %th Total
+          %tbody
+          = render partial: "orders/order_item", collection: @item.order_items, :as => :item
+          %tr
+            %td 
+              %b Summary
+            %td
+            %td 
+              %b= @item.items_count
+            %td 
+              %b= @item.total
+      %br/
+      .input-group
+        = f.submit class: 'btn btn-primary'
+  = render "layouts/shared/validation_errors", item: @item
