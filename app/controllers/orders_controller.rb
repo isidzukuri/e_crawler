@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
 
   def create_item
     @order = Order.create(user: current_user)
-    products.each do |product|
+    basket.items.each do |product|
       @order.order_items << OrderItem.new(product_id: product, quantity: 1)
     end
   end
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
   end
 
   def successful_creation
-    empty_basket
+    basket.empty
     add_flash 'Order created successfully'
     redirect_to @order
   end
@@ -43,11 +43,8 @@ class OrdersController < ApplicationController
     redirect_to basket_index_path
   end
 
-  def products
-    session[:products]
+  def basket
+    @basket ||= Basket.new(session)
   end
 
-  def empty_basket
-    session[:products] = nil
-  end
 end
