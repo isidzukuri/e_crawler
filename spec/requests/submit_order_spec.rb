@@ -36,7 +36,7 @@ RSpec.feature 'Submit order', type: :feature do
 
     fill_in 'Email', with: email
     fill_in 'Password', with: password
-    click_button 'Log in'
+    click_button 'Sign in'
 
     expect(current_path).to eq root_path
     expect(page).to have_text('Orders')
