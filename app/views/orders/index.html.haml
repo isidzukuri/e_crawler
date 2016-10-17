@@ -9,6 +9,5 @@
             %th Status
             %th Total
         %tbody
-        / = render partial: "orders/order_item", collection: @item.order_items, :as => :item
         = render partial: "orders/item", collection: @items
         

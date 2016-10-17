@@ -2,16 +2,16 @@ class OrdersController < ApplicationController
   load_and_authorize_resource except: [:create]
 
   def create
-    authorize! :create, Order
-
-    @order = Order.create(user: current_user)
-    products.each do |product|
-      @order.order_items << OrderItem.new(product_id: product, quantity: 1)
-    end
-    if @order.save
-      successful_creation
+    if signed_in? 
+      # authorize! :create, Order
+      create_item
+      if @order.save
+        successful_creation
+      else
+        redirect_to basket_index_path
+      end
     else
-      redirect_to basket_index_path
+      force_login
     end
   end
 
@@ -24,7 +24,21 @@ class OrdersController < ApplicationController
   end
 
 
+
+
   private
+
+  def create_item
+    @order = Order.create(user: current_user)
+    products.each do |product|
+      @order.order_items << OrderItem.new(product_id: product, quantity: 1)
+    end
+  end
+
+  def force_login
+    session[:previous_url] = basket_index_path
+    redirect_to new_user_session_path
+  end
 
   def successful_creation
     empty_basket
