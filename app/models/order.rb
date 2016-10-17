@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   validate :user_present
 
   def subtotal
-    order_items.collect(&:total_price).sum
+    order_items.sum(&:total_price)
   end
 
   private

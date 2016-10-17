@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
       create_item
       @order.save ? successful_creation : failed_creation
     else
-      force_login
+      must_be_logged_in
     end
   end
 
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def force_login
+  def must_be_logged_in
     session[:previous_url] = basket_index_path
     redirect_to new_user_session_path
   end
