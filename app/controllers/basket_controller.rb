@@ -2,6 +2,7 @@ class BasketController < ApplicationController
   def index
     @items = Product.find(products.to_a)
     @summary = @items.sum(&:price)
+    @order = Order.new
   end
 
   def update

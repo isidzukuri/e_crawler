@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :products
-  resources :basket
+  resources :basket, only: [:index, :update]
+  resources :orders, :except => [:edit, :update,:destroy]
+
 
   match ':controller(/:action(/:id))', :via => 'get' 
 

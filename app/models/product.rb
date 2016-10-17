@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   resourcify
 
   belongs_to :category
+  has_many :order_items
 
   validates :title, presence: true, length: { in: 2..200 }
   validates :price, numericality: { greater_than: 0 }
