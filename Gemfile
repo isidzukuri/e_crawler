@@ -63,5 +63,6 @@ gem 'mechanize', '2.1.1'
 gem 'bulk_insert'
 gem 'sidekiq', '4.2.2'
 gem 'redis'
-gem 'active_decorator'
+gem 'active_decorator', '0.7.1'
+gem "capybara"
 
