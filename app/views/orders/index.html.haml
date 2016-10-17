@@ -1,0 +1,14 @@
+.panel.panel-default
+  .panel-heading orders
+  .panel-body
+    .table-responsive
+      %table.table.table-hover
+        %thead
+          %tr
+            %th Id
+            %th Status
+            %th Total
+        %tbody
+        / = render partial: "orders/order_item", collection: @item.order_items, :as => :item
+        = render partial: "orders/item", collection: @items
+        

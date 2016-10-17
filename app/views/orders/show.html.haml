@@ -2,5 +2,25 @@
   .panel-heading Order 
   .panel-body
     %br/
+    %b status:
+    = @item.status
+    %br/
     %b products:
-    = render partial: "products/item", collection: @item.products
+    .table-responsive
+      %table.table.table-hover
+        %thead
+          %tr
+            %th Item
+            %th Price
+            %th Quantity
+            %th Total
+        %tbody
+        = render partial: "orders/order_item", collection: @item.order_items, :as => :item
+        %tr
+          %td 
+            %b Summary
+          %td
+          %td 
+            %b= @item.items_count
+          %td 
+            %b= @item.total

@@ -13,5 +13,6 @@
         = @summary
       %br/
       .input-group
-        = f.submit class: 'btn btn-primary'
+        -if @items.present?
+          = f.submit class: 'btn btn-primary'
   
