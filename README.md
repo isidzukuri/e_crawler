@@ -1,24 +1,5 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Its a basic shop application built with rails. But it has one major addition: it has ability to copy goods from other websites. Scraping process works real fast because is using multi threads and bulk insert to db.
+haml + bootstrap.
+devise + cancancan + rolify for user authorization and admin panel.
+mechanize + sidekiq for crawling.
+rspec + vcr + capybara for testing.
