@@ -1,4 +1,4 @@
-.navbar.navbar-default.top_menu
+.navbar.navbar-default.top_menu.navbar-inverse
   .container
     %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
       %span.icon-bar
@@ -6,8 +6,8 @@
       %span.icon-bar
     .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav
-        / %li= link_to "Categories", categories_path 
-        / %li= link_to "Products", products_path
+        / %li= link_to "Categories", admin_categories_path 
+        %li= link_to "Products", admin_products_path
         %li= link_to "Orders", admin_orders_path
       %ul.nav.navbar-nav.navbar-right
         %li= link_to current_user.email, edit_user_registration_path
