@@ -11,5 +11,8 @@ class CategoryCopier
   def copy(url)
     items = @crawler.copy(url)
     ItemsCreator.bulk_create :product, items, category_id: @category_id
+    { items: items }
+  rescue Exception => e
+    { error: e.message }
   end
 end

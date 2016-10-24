@@ -45,6 +45,13 @@ group :development do
   gem 'rspec-rails', '~> 3.5'
 end
 
+group :test do
+  gem 'factory_girl_rails', :require => false
+  gem 'vcr'
+  gem 'webmock'
+  gem 'faker'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '4.2.0'
@@ -54,6 +61,7 @@ gem 'haml', '4.0.7'
 gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'mechanize', '2.1.1'
 gem 'bulk_insert'
-gem 'vcr'
-gem 'webmock'
-gem 'faker'
+gem 'sidekiq', '4.2.2'
+gem 'redis'
+gem 'active_decorator'
+
